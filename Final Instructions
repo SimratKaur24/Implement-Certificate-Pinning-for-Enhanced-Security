@@ -1,0 +1,30 @@
+Security Review for the Simple Weather App Project
+
+ a. What is your security recommendation? Why did you choose it?
+Recommendation: Implement Certificate Pinning for network communications.  
+Rationale: Since the app relies on fetching data from the OpenWeatherMap API, securing the communication channel is crucial to prevent man-in-the-middle (MITM) attacks, ensuring that data exchanged between the app and the API server is not intercepted or tampered with by unauthorized entities.
+
+b. Who does the recommendation benefit?
+This recommendation benefits both the end-users and the developers. End-users are assured that their data interactions with the app are secure, fostering trust. Developers benefit by safeguarding the integrity of the data their app processes and enhancing the app's overall security posture.
+
+ c. External link for the recommendation
+While the recommendation is based on the provided checklist and common security practices, more details about certificate pinning can be found through resources such as OWASP:  
+[OWASP Certificate Pinning Guide](https://owasp.org/www-community/controls/Certificate_and_Public_Key_Pinning )
+
+d. When would the recommendation have to be implemented?
+This security measure should be implemented during the development phase, before the app is released to the public. Given the critical nature of securing network communication, especially for an app that relies on external API calls for its core functionality, it is considered a high-priority task.
+
+
+
+
+ e. Why do you think your project needs your recommendation?
+
+Given the app's reliance on real-time weather data fetched from an external API, ensuring the security of this data flow is imperative. Certificate pinning will protect the app from potential data breaches and enhance user trust by securing the app's communication with its backend services.
+
+ f. How do you think your recommendation could be applied?
+
+1. Integration in the App: Certificate pinning can be integrated into the app by including the public key of the OpenWeatherMap API's SSL certificate directly in the app's source code. During each network request, the app should verify that the server's certificate matches the pinned certificate.
+
+2. Feasibility: Implementing certificate pinning is a feasible task with several well-documented libraries and tools available for Android development, such as OkHttp for network operations which supports certificate pinning. However, it requires careful management to update the pinned certificates in the app whenever the server's certificates are renewed.
+
+
